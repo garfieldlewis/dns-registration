@@ -1,0 +1,16 @@
+dns_registration( ) {
+	HOST=$(/usr/bin/hostname)
+	IPADDR=$(ip -o -4 addr ls dev ${DEVICE} | awk '{ split( $4, a, "/", seps ); print a[1] }')
+	ARADDR=$(sed -re 's/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\4\.\3\.\2\.\1\.in-addr\.arpa/' <<< ${IPADDR})
+	
+	nsupdate << EOF
+		server ${REGISTRATION_DNS}
+        
+		update delete ${HOST}.${REGISTRATION_ZONE} A
+		update add ${HOST}.${REGISTRATION_ZONE} 86400 A ${IPADDR}
+        
+		update delete ${ARADDR} PTR
+		update add ${ARADDR} 86400 PTR ${HOST}.${REGISTRATION_ZONE}
+		send
+EOF
+}

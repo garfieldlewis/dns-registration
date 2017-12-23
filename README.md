@@ -27,7 +27,7 @@ at the DNS. In some cases where you are running in a headless situation you will
 not be able to simply do a ifdown/ifup to accomplish this new registration. So,
 you may need to do something like the following to re-register:
 
-. /etc/sysconfig/network-scripts/dns-functions && DEVICE=<DEVICE> REGISTRATION_DNS=<IPADDR\> REGISTRATION_ZONE=<ZONE\> dns_registration
+. /etc/sysconfig/network-scripts/dns-functions && DEVICE=<DEVICE\> REGISTRATION_DNS=<IPADDR\> REGISTRATION_ZONE=<ZONE\> dns_registration
 
 **Example**
 

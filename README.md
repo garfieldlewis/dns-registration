@@ -36,6 +36,6 @@ you may need to do something like the following to re-register:
 # TODO
 
 * write script to update the *ifup* and/or *ifup-post* scripts
-* write script to update the *ifcfg-<DEVICE>* file
+* write script to update the *ifcfg-<DEVICE\>* file
 * add REGISTRATION_DNS and REGISTRATION_ZONE to resolv.conf
-* fiture out how to do this on the Mac.   :-)
+* figure out how to do this on the Mac.   :-)

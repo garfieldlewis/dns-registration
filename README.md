@@ -1,7 +1,7 @@
 # dns-registration
-Simple setup to allow host registration to a local  DNS
+Simple setup to allow host registration to your local DNS
 
-# Setup - WIP
+# Setup
 
 To get the updates to be be made automatically we will take advantabe of the
 current interface startup infrastructure (ifup). There are basically 3 steps
@@ -9,10 +9,13 @@ to accomplish this:
 
 * add **dns-functions** script to the /etc/sysconfig/network-scripts
 * update the *ifcfg-<DEVICE\>* to add the following new tokens
-  * REGISTRATIONS_DNS
+  * REGISTRATIONS_DNS=<dns-ipaddr\>
     * This is the IP address of the DNS where the hostname will be registered
-  * REGISTRATION_ZONE
-    * This is the DNS zone where the where the hostname willb be registered
+    * i.e. 192.168.0.16
+    * **Note:** The DNS must be configured to allow updates from this network
+  * REGISTRATION_ZONE=<fqn-of-your-zone\>
+    * This is the name of the DNS zone where the hostname will be registered
+    * i.e. example.com
 * update the *ifup* script to call the source the **dns-functions** script and call the **dns_registration** function
   * __*[ -f ./dns-functions ] && . ./dns-functions*__
   * __*[ -n "${REGISTRATION_DNS}" ] && dns_registration*__
